@@ -10,7 +10,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Gerekli Python kütüphaneleri
 RUN pip install --upgrade pip && \
-    pip install transformers accelerate sentencepiece gradio
+    pip install transformers accelerate sentencepiece gradio bitsandbytes
 
 # Çalışma dizini
 WORKDIR /app
