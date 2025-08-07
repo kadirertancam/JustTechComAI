@@ -1,9 +1,10 @@
+import os
 import gradio as gr
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 from huggingface_hub import login
 
 MODEL_NAME = "openai/gpt-oss-20b"
-HF_TOKEN = os.getenv("HF_TOKEN") 
+HF_TOKEN = os.getenv("HF_TOKEN")
 
 # Hugging Face'e giriş yap
 login(token=HF_TOKEN)
