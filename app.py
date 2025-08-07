@@ -3,6 +3,9 @@ import gradio as gr
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 from huggingface_hub import login
 
+import torch
+import bitsandbytes as bnb
+
 MODEL_NAME = "openai/gpt-oss-20b"
 HF_TOKEN = os.getenv("HF_TOKEN")
 
@@ -14,7 +17,8 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, token=HF_TOKEN)
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_NAME,
     device_map="auto",
-    torch_dtype="auto",
+    load_in_8bit=True,
+    torch_dtype=torch.float16,
     token=HF_TOKEN
 )
 
