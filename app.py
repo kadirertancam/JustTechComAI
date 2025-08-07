@@ -1,14 +1,20 @@
 import gradio as gr
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+from huggingface_hub import login
 
 MODEL_NAME = "gpt-oss/gpt-oss-20b"
+HF_TOKEN = "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"
+
+# Hugging Face'e giriş yap
+login(token=HF_TOKEN)
 
 # Model ve tokenizer'ı yükle
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, token=HF_TOKEN)
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_NAME,
     device_map="auto",
-    torch_dtype="auto"
+    torch_dtype="auto",
+    token=HF_TOKEN
 )
 
 # Text generation pipeline
